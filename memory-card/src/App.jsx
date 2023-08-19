@@ -25,23 +25,48 @@ function randomizeArray() {
   console.log(shuffled);
 }
 
+// function CheckAlreadySelected(value) {
+//   const [picked,setPicked] = useState([]);
+//   if (picked.includes(value)) {
+//     return;
+//   } else {
+//     setPicked([...picked, { value }]);
+//     console.log(picked);
+//   }
+// }
+
 
 function CreateDiv() {
-    function remixOrder() {
-      randomizeArray();
-    }
+      function remixOrder() {
+        randomizeArray();
+      }
 
-    const [state, setState] = useState(0);
-    const onClick = () => {//Causes CreateDiv to rerender
-      setState(state + 1);
-      remixOrder();
-      console.log(state);
-    };
+      const [state, setState] = useState(0);
+      const [highScore, setHighScore] = useState(0);
+  
+      const onClick = (event) => {//Causes CreateDiv to rerender
+        if (event.currentTarget.className == "notSelected") {
+          event.currentTarget.className = "selected";
+          setState(state + 1);
+          remixOrder();
+          // CheckAlreadySelected(shuffled.value);
+          console.log(state);
+        } else {
+          event.currentTarget.className = 'notSelected';
+          remixOrder();
+          setHighScore(state);
+          setState(0);
+          console.log("You lost");
+        }
+
+
+      };
+    
   return (
     <div>
           {shuffled.map((shuffled) => (
             <figure key={shuffled.value}>
-              <img onClick={onClick} src={shuffled.img} alt={shuffled.name}/>
+              <img onClick={onClick} src={shuffled.img} alt={shuffled.name} className='notSelected'/>
               <figcaption>{shuffled.name}</figcaption>
             </figure>
       ))}
@@ -54,8 +79,8 @@ function App() {
   return (
     <>
       <div>
-        <p>Score: <state /></p>
-        <p>HighScore: <state /></p>
+        <p>Score: <score /></p>
+        <p>HighScore: <score /></p>
       </div>
       <CreateDiv />
     </>
