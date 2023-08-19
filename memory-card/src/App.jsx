@@ -43,7 +43,6 @@ function CreateDiv() {
 
       const [state, setState] = useState(0);
       const [highScore, setHighScore] = useState(0);
-  
       const onClick = (event) => {//Causes CreateDiv to rerender
         if (event.currentTarget.className == "notSelected") {
           event.currentTarget.className = "selected";
@@ -64,6 +63,10 @@ function CreateDiv() {
     
   return (
     <div>
+      <div>
+        <p>Score: {state}</p>
+        <p>HighScore: {highScore}</p>
+      </div>
           {shuffled.map((shuffled) => (
             <figure key={shuffled.value}>
               <img onClick={onClick} src={shuffled.img} alt={shuffled.name} className='notSelected'/>
@@ -78,10 +81,6 @@ function CreateDiv() {
 function App() {
   return (
     <>
-      <div>
-        <p>Score: <score /></p>
-        <p>HighScore: <score /></p>
-      </div>
       <CreateDiv />
     </>
   )
