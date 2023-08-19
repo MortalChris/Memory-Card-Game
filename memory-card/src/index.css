@@ -3,5 +3,18 @@
   padding: 0;
 }
 img{
-  height: 20rem;
+  height: 15rem;
+}
+#container{
+  margin-top: 5rem;
+  display: grid;
+  text-align: center;
+  grid-template-areas: 
+  "Score Score Score"
+  ". . ."
+  ". . ."
+  ". . ."; 
+}
+#scores{
+  grid-area: Score;
 }

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useEffect } from 'react';
 import './App.css'
 
 
@@ -62,8 +61,8 @@ function CreateDiv() {
       };
     
   return (
-    <div>
-      <div>
+    <div id="container">
+      <div id="scores">
         <p>Score: {state}</p>
         <p>HighScore: {highScore}</p>
       </div>
